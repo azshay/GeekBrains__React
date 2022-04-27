@@ -1,0 +1,87 @@
+* {
+     box-sizing: border-box;
+}
+
+.App {
+     display: grid;
+     grid-template: 100vh / 5vw 95vw;
+}
+
+.chatList {
+     background: #201d30;
+     border-right: 1px solid white;
+}
+
+.chat {
+     background: #2a2738;
+     display: grid;
+     grid-template: 5vh 85vh 10vh / 95vw;
+
+     &__user {
+          border-bottom: 1px solid white;
+     }
+
+     &__send {
+          display: flex;
+          justify-content: space-between;
+          border-top: 1px solid white;
+          padding-top: 2.5vh;
+          padding-bottom: 2.5vh;
+          padding-right: 10px;
+     }
+
+     &__userName {
+          color: white;
+          margin-left: 10px;
+          margin-top: 1vh;
+     }
+
+     &__messages {
+          overflow-y: scroll;
+          padding: 10px 0;
+     }
+
+     &__sendButton {
+          border: none;
+          background: white;
+          color: #2a2738;
+          border-radius: 30px;
+          cursor: pointer;
+          width: 100px;
+     }
+
+     &__message,
+     &__messageRight {
+          background: white;
+          display: flex;
+          width: 45%;
+          flex-direction: column;
+          border-radius: 5px;
+          margin-left: 10px;
+          padding: 10px;
+     }
+
+     &__messageRight {
+          margin-left: auto;
+          margin-right: 10px;
+     }
+
+     &__messageAuthor {
+          font-weight: bold;
+          text-transform: uppercase;
+     }
+
+     &__messageAuthor,
+     &__messageText {
+          color: #2a2738;
+          margin-left: 10px;
+     }
+}
+
+#chat__textArea {
+     resize: none;
+     width: 85vw;
+     margin-left: 10px;
+     height: 5vh;
+     outline: none;
+}
