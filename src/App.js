@@ -1,21 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createRef } from "react";
 
-import Message from "./components/Message/Message";
+import Messages from "./components/Messages/Messages";
+import MessageList from "./components/MessageList/MessageList";
 
 import "./app.scss";
 
 function App() {
-     const [messageList, setMessageList] = useState([]);
+     const [messages, setMessages] = useState([]);
      const [textareaValue, setTextareaValue] = useState();
 
+     const areaRef = createRef();
+
      useEffect(() => {
+          focusArea();
+
           if (
-               messageList.length === 0 ||
-               messageList[messageList.length - 1].author === "User"
+               messages.length === 0 ||
+               messages[messages.length - 1].author === "User"
           ) {
                setTimeout(() => {
-                    setMessageList([
-                         ...messageList,
+                    setMessages([
+                         ...messages,
                          {
                               author: "Bot",
                               text: "Hello, I`m BOT. Operator is coming soon.",
@@ -23,51 +28,39 @@ function App() {
                     ]);
                }, 1500);
           }
-     }, [messageList]);
-
-     const sendMessage = () => {
-          if (textareaValue.length !== 0) {
-               setMessageList([
-                    ...messageList,
-                    { author: "User", text: textareaValue },
-               ]);
-
-               setTextareaValue("");
-          }
-     };
+     }, [messages]);
 
      const textareaHandler = (e) => {
           setTextareaValue(e.target.value);
      };
 
+     const sendMessage = () => {
+          if (textareaValue.length !== 0) {
+               setMessages([
+                    ...messages,
+                    { author: "User", text: textareaValue },
+               ]);
+
+               setTextareaValue("");
+          }
+
+          areaRef.current.focus();
+     };
+
+     const focusArea = () => {
+          areaRef.current.focus();
+     };
+
      return (
           <div className="App">
-               <div className="chatList"></div>
+               <div className="chatList">
+                    <MessageList></MessageList>
+               </div>
                <div className="chat">
                     <div className="chat__user">
                          <p className="chat__userName">Bot</p>
                     </div>
-                    <div className="chat__messages">
-                         {messageList.map((message, index) => {
-                              return (
-                                   <div
-                                        className={
-                                             message.author === "User"
-                                                  ? "chat__messageRight"
-                                                  : "chat__message"
-                                        }
-                                        key={index}
-                                   >
-                                        <div className="chat__messageAuthor">
-                                             {message.author}
-                                        </div>
-                                        <div className="chat__messageText">
-                                             {message.text}
-                                        </div>
-                                   </div>
-                              );
-                         })}
-                    </div>
+                    <Messages messages={messages}></Messages>
                     <div className="chat__send">
                          <textarea
                               name="chat__textArea"
@@ -76,6 +69,7 @@ function App() {
                               rows="10"
                               value={textareaValue}
                               onChange={textareaHandler}
+                              ref={areaRef}
                          ></textarea>
                          <button
                               className="chat__sendButton"
