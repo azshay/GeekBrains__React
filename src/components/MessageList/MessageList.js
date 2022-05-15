@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 import { List, Avatar } from "@mui/material";
 
@@ -10,57 +11,60 @@ const MessageList = () => {
                name: "firstChat",
                id: 1,
                icon: (
-                    <Avatar
-                         key="1"
-                         className="chat__messageListAvatar"
-                         sx={{
-                              width: 50,
-                              height: 50,
-                              border: "1px solid white",
-                              backgroundColor: "#2a2738",
-                              cursor: "pointer",
-                         }}
-                    >
-                         1
-                    </Avatar>
+                    <NavLink key="1" to="/1">
+                         <Avatar
+                              className="chat__messageListAvatar"
+                              sx={{
+                                   width: 50,
+                                   height: 50,
+                                   border: "1px solid white",
+                                   backgroundColor: "#2a2738",
+                                   cursor: "pointer",
+                              }}
+                         >
+                              1
+                         </Avatar>
+                    </NavLink>
                ),
           },
           {
                name: "secondChat",
                id: 2,
                icon: (
-                    <Avatar
-                         key="2"
-                         className="chat__messageListAvatar"
-                         sx={{
-                              width: 50,
-                              height: 50,
-                              border: "1px solid white",
-                              backgroundColor: "#2a2738",
-                              cursor: "pointer",
-                         }}
-                    >
-                         2
-                    </Avatar>
+                    <NavLink key="2" to="/2">
+                         <Avatar
+                              className="chat__messageListAvatar"
+                              sx={{
+                                   width: 50,
+                                   height: 50,
+                                   border: "1px solid white",
+                                   backgroundColor: "#2a2738",
+                                   cursor: "pointer",
+                              }}
+                         >
+                              2
+                         </Avatar>
+                    </NavLink>
                ),
           },
           {
                name: "firstChat",
                id: 3,
                icon: (
-                    <Avatar
-                         key="3"
-                         className="chat__messageListAvatar"
-                         sx={{
-                              width: 50,
-                              height: 50,
-                              border: "1px solid white",
-                              backgroundColor: "#2a2738",
-                              cursor: "pointer",
-                         }}
-                    >
-                         3
-                    </Avatar>
+                    <NavLink key="3" to="/3">
+                         <Avatar
+                              className="chat__messageListAvatar"
+                              sx={{
+                                   width: 50,
+                                   height: 50,
+                                   border: "1px solid white",
+                                   backgroundColor: "#2a2738",
+                                   cursor: "pointer",
+                              }}
+                         >
+                              3
+                         </Avatar>
+                    </NavLink>
                ),
           },
      ]);
